@@ -1,0 +1,31 @@
+version: '3'
+services:
+  app:
+    build: ./docker/dev/app
+    container_name: kvak_app
+    ports:
+      - "9000:9000"
+    volumes:
+      - ./app:/var/www/kvak:cached
+    links:
+      - db
+  webserver:
+    image: nginx:latest
+    container_name: kvak_webserver
+    ports:
+      - "80:80"
+    links:
+      - app
+    volumes:
+      - ./app:/var/www/kvak:cached
+      - ./docker/dev/webserver/kvak.conf:/etc/nginx/conf.d/default.conf
+  db:
+    image: mysql:8.0.18
+    container_name: kvak_db
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kvak
+      MYSQL_USER: kvak
+      MYSQL_PASSWORD: kvak
