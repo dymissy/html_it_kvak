@@ -11,10 +11,12 @@ RUN apt-get update && apt-get install -y \
         libjpeg62-turbo-dev \
         libmcrypt-dev \
         libpng-dev \
-        libxml2-dev
+        libxml2-dev \
+        libzip-dev \
+        unzip
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ \
-    && docker-php-ext-install -j$(nproc) gd bcmath soap intl pdo pdo_mysql
+    && docker-php-ext-install -j$(nproc) gd bcmath soap intl pdo pdo_mysql zip
 
 #install composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
