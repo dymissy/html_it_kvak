@@ -1,7 +1,12 @@
 security:
+    encoders:
+        Symfony\Component\Security\Core\User\User: 'auto'
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: null }
+        backend_users:
+            memory:
+                users:
+                    ryan: { password: '$argon2id$v=19$m=65536,t=4,p=1$6Q3K+BcSvIJFW0Sqiat7IQ$NDTUDUy44seEe2a+U5LYv0rVOMdM/gs+YlKBjFNpByc', roles: ['ROLE_USER'] } #password: helloworld
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
