@@ -1,42 +1,91 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Log in!{% endblock %}
-
+{% block body_classes %}login-page sidebar-collapse{% endblock %}
 {% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
+    <div class="page-header clear-filter" filter-color="orange">
+        <div class="page-header-image" style="background-image:url({{ asset('assets/img/login.jpg') }})"></div>
+        <div class="content">
+            <div class="container">
+                <div class="col-md-4 ml-auto mr-auto">
+                    <div class="card card-login card-plain">
+                        <form class="form" method="post">
+                            <div class="card-header text-center">
+                                <h1 class="display-1">KVAK</h1>
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                                {% if error %}
+                                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="card-body">
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="now-ui-icons users_circle-08"></i>
+                                    </span>
+                                    </div>
+                                    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
+                                </div>
+                                <div class="input-group no-border input-lg">
+                                    <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="now-ui-icons text_caps-small"></i>
+                                    </span>
+                                    </div>
+                                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="card-footer text-center">
+                                <button class="btn btn-primary btn-round btn-lg btn-block" type="submit">Log In</button>
+                                <div class="pull-left">
+                                    <h6>
+                                        <a href="#pablo" class="link">Create Account</a>
+                                    </h6>
+                                </div>
+                                <div class="pull-right">
+                                    <h6>
+                                        <a href="#" class="link">Need Help?</a>
+                                    </h6>
+                                </div>
+                            </div>
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class=" container ">
+                    <nav>
+                        <ul>
+                            <li>
+                                <a href="https://www.creative-tim.com">
+                                    Creative Tim
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://presentation.creative-tim.com">
+                                    About Us
+                                </a>
+                            </li>
+                            <li>
+                                <a href="http://blog.creative-tim.com">
+                                    Blog
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="copyright" id="copyright">
+                        &copy;
+                        <script>
+                            document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                        </script>
+                        , Designed by
+                        <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                        <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+                    </div>
+                </div>
+            </footer>
         </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+    </div>
 {% endblock %}
