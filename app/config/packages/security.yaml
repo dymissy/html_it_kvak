@@ -1,12 +1,16 @@
 security:
     encoders:
         Symfony\Component\Security\Core\User\User: 'auto'
+        App\Entity\User:
+            algorithm: auto
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        backend_users:
-            memory:
-                users:
-                    ryan: { password: '$argon2id$v=19$m=65536,t=4,p=1$6Q3K+BcSvIJFW0Sqiat7IQ$NDTUDUy44seEe2a+U5LYv0rVOMdM/gs+YlKBjFNpByc', roles: ['ROLE_USER'] } #password: helloworld
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
