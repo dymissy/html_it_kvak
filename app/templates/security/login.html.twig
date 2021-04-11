@@ -12,6 +12,7 @@
                         <form class="form" method="post">
                             <div class="card-header text-center">
                                 <h1 class="display-1">KVAK</h1>
+                                <p>Log In</p>
 
                                 {% if error %}
                                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
@@ -39,7 +40,7 @@
                                 <button class="btn btn-primary btn-round btn-lg btn-block" type="submit">Log In</button>
                                 <div class="pull-left">
                                     <h6>
-                                        <a href="#pablo" class="link">Create Account</a>
+                                        <a href="{{ url('app_register') }}" class="link">Create Account</a>
                                     </h6>
                                 </div>
                                 <div class="pull-right">
