@@ -47,6 +47,14 @@
 
         <div class="section">
             <div class="container">
+                {% for label, messages in app.flashes(['success', 'danger']) %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
                 <h3 class="title">Timeline</h3>
                 <div class="card">
                 </div>
