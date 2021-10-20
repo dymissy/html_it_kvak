@@ -13,6 +13,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    public const DEFAULT_AVATAR = 'assets/img/default-avatar.png';
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -151,7 +153,7 @@ class User implements UserInterface
 
     public function getAvatar(): ?string
     {
-        return $this->avatar;
+        return $this->avatar ?? self::DEFAULT_AVATAR;
     }
 
     public function setAvatar(?string $avatar): self

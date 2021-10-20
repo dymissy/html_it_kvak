@@ -38,10 +38,10 @@
             </div>
             <div class="container">
                 <div class="photo-container">
-                    <img src="{{ asset('assets/img/ryan.jpg') }}" alt="">
+                    <img src="{{ asset(app.user.avatar) }}" alt="">
                 </div>
-                <h3 class="title">Ryan Scheinder</h3>
-                <p class="category">@ryan</p>
+                {% if app.user.fullName %}<h3 class="title">{{ app.user.fullName }}</h3>{% endif %}
+                <p class="category">{{ app.user.email }}</p>
             </div>
         </div>
 
