@@ -22,10 +22,14 @@ class AppFixtures extends Fixture
         $ryan = new User();
         $ryan->setEmail('ryan@ryan.it');
         $ryan->setPassword($this->passwordEncoder->encodePassword($ryan, 'helloworld'));
+        $ryan->setFullName('Ryan');
+        $ryan->setAvatar('assets/img/ryan.jpg');
 
         $julie = new User();
         $julie->setEmail('julie@julie.it');
         $julie->setPassword($this->passwordEncoder->encodePassword($julie, 'helloworld'));
+        $julie->setFullName('Julie');
+        $julie->setAvatar('assets/img/julie.jpg');
 
         $manager->persist($ryan);
         $manager->persist($julie);
