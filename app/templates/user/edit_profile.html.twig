@@ -1,0 +1,96 @@
+{% extends 'base.html.twig' %}
+{% block body_classes %}profile-page sidebar-collapse{% endblock %}
+{% block title %}Edit your profile{% endblock %}
+{% block body %}
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
+        <div class="container">
+            <div class="dropdown button-dropdown">
+                <a href="#pablo" class="dropdown-toggle" id="navbarDropdown" data-toggle="dropdown">
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                    <span class="button-bar"></span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-header">Menu</a>
+                    <a class="dropdown-item" href="home.html">Home</a>
+                    <a class="dropdown-item" href="profile.html">Profile</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="login.html">Login</a>
+                    <a class="dropdown-item" href="#">Logout</a>
+                </div>
+            </div>
+            <div class="navbar-translate">
+                <a class="navbar-brand" href="/">kvak</a>
+                <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation"
+                        aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-bar top-bar"></span>
+                    <span class="navbar-toggler-bar middle-bar"></span>
+                    <span class="navbar-toggler-bar bottom-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse justify-content-end"></div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="wrapper">
+        <div class="page-header clear-filter page-header-small" filter-color="orange">
+            <div class="page-header-image" data-parallax="true" style="background-image:url('{{ asset('assets/img/bg7.jpg') }}');">
+            </div>
+            <div class="container">
+                <div class="photo-container">
+                    <img src="{{ asset(app.user.avatar) }}" alt="">
+                </div>
+                {% if app.user.fullName %}<h3 class="title">{{ app.user.fullName }}</h3>{% endif %}
+                <p class="category">{{ app.user.email }}</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="container">
+                {% for label, messages in app.flashes(['success', 'danger']) %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+
+            </div>
+        </div>
+
+        <footer class="footer footer-default">
+            <div class=" container ">
+                <nav>
+                    <ul>
+                        <li>
+                            <a href="https://www.creative-tim.com">
+                                Creative Tim
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://presentation.creative-tim.com">
+                                About Us
+                            </a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com">
+                                Blog
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="copyright" id="copyright">
+                    &copy;
+                    <script>
+                        document.getElementById('copyright').appendChild(document.createTextNode(new Date().getFullYear()))
+                    </script>
+                    , Designed by
+                    <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+                    <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+                </div>
+            </div>
+        </footer>
+    </div>
+{% endblock %}
